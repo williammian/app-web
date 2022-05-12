@@ -1,0 +1,36 @@
+<header showIfLogged class="fixed-top">
+  <nav class="navbar navbar-light bg-white">
+      <a class="navbar-brand">
+        <i tabindex="0" (keyup.space)="menu.toggle()" (click)="menu.toggle()" class="fa fa-bars mr-2"></i>
+        APP
+      </a>
+
+      <ap-menu #menu>
+        <ul class="list-unstyled">
+          <li>
+            <a [routerLink]="['home']">Home</a>
+          </li>
+          <li>
+            <a [routerLink]="['itens']">Itens</a>
+          </li>
+        </ul>
+      </ap-menu>
+
+      <div *ngIf="(user$ | async) as user; else login">
+        <i class="fa fa-user-circle mr-1"></i>
+        <a class="mr-1">{{ user.nome }}</a>
+        <a href="#" (click)="logout()">(Logout)</a>
+      </div>
+
+      <ng-template #login>
+        <a [routerLink]="['']">Por favor, login!</a>
+      </ng-template>
+
+  </nav>
+
+  <div class="fixed-top">
+    <ap-loading></ap-loading>
+    <ap-alert></ap-alert>
+  </div>
+
+</header>

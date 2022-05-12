@@ -1,0 +1,82 @@
+Bootstrap 4
+
+npm install bootstrap@4.1.1
+
+No angular.json
+
+"styles": [
+  "src/styles.css",
+  "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+],
+"scripts": []
+
+-----------------------------------------
+
+Font Awesome
+
+npm install font-awesome@4.7.0
+
+No angular.json
+
+"styles": [
+  "src/styles.css",
+  "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+  "./node_modules/font-awesome/css/font-awesome.css"
+],
+"scripts": []
+
+-----------------------------------------
+
+Stacktrace
+
+npm install stacktrace-js
+
+npm install @types/stacktrace-js
+
+-----------------------------------------
+
+ngx-toastr
+
+npm install ngx-toastr@13.2.1
+
+npm install @angular/animations@10
+
+"styles": [
+  "styles.scss",
+  "node_modules/ngx-toastr/toastr.css" // try adding '../' if you're using angular cli before 6
+]
+
+Adicionar
+BrowserAnimationsModule
+ToastrModule.forRoot()
+
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
+  ],
+  bootstrap: [App],
+  declarations: [App],
+})
+class MainModule {}
+
+Uso
+
+import { ToastrService } from 'ngx-toastr';
+
+@Component({...})
+export class YourComponent {
+  constructor(private toastr: ToastrService) {}
+
+  showSuccess() {
+    this.toastr.success('Hello world!', 'Toastr fun!');
+  }
+}
+
+--------------------------------------------

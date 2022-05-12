@@ -1,0 +1,16 @@
+<footer class="mt-5" *ngIf="(user$ | async) as user">
+  <div class="fixed-bottom bg-white p-1">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-6">
+          <a [routerLink]="['home']">
+              <i class="fa fa-home fa-2x"></i>
+          </a>
+        </div>
+        <div class="col-6">
+          <a href="#" class="fa fa-sign-out fa-2x" (click)="logout()"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
