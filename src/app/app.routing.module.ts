@@ -1,3 +1,4 @@
+import { ItensCadComponent } from './itens/itens-cad/itens-cad.component';
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
@@ -18,6 +19,7 @@ const routes: Routes = [
       title: 'Login'
     }
   },
+
   {
     path: 'home',
     component: HomeComponent,
@@ -26,6 +28,7 @@ const routes: Routes = [
       title: 'Home'
     }
   },
+
   {
     path: 'itens',
     component: ItensListComponent,
@@ -34,6 +37,23 @@ const routes: Routes = [
       title: 'Itens'
     }
   },
+  {
+    path: 'itens/novo',
+    component: ItensCadComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'Itens'
+    }
+  },
+  {
+    path: 'itens/:id',
+    component: ItensCadComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'Itens'
+    }
+  },
+
   {
     path: 'error',
     component: GlobalErrorComponent,

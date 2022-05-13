@@ -5,6 +5,7 @@ import { LocationStrategy, PathLocationStrategy } from "@angular/common";
 import { UserService } from "src/app/core/user/user.service";
 import * as StackTrace from "stacktrace-js";
 import { ToastrService } from 'ngx-toastr';
+import { LoadingService } from 'src/app/shared/components/loading/loading.service';
 
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {
@@ -17,6 +18,7 @@ export class GlobalErrorHandler implements ErrorHandler {
     const router = this.injector.get(Router);
     const zone = this.injector.get(NgZone);
     const toastrService = this.injector.get(ToastrService);
+    const loadingService = this.injector.get(LoadingService);
 
     const url = location instanceof PathLocationStrategy
             ? location.path()
@@ -45,7 +47,7 @@ export class GlobalErrorHandler implements ErrorHandler {
 
         });
 
-      zone.run(() => router.navigate(['error']));
+      zone.run(() => router.navigate(['/error']));
 
     }else if(error instanceof HttpErrorResponse) {
       let msg: string;
@@ -69,14 +71,16 @@ export class GlobalErrorHandler implements ErrorHandler {
         } catch (e) { }
 
         zone.run(() => toastrService.warning(msg));
+        loadingService.stop();
 
       }else{
         msg = 'Erro ao processar serviço remoto. Tente novamente.';
         zone.run(() => toastrService.error(msg));
+        loadingService.stop();
       }
 
     }else{
-      zone.run(() => router.navigate(['error']));
+      zone.run(() => router.navigate(['/error']));
     }
 
   }

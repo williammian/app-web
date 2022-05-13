@@ -23,6 +23,8 @@
     "bootstrap": "^4.6.1",
     "font-awesome": "^4.7.0",
     "jwt-decode": "^2.2.0",
+    "ng2-currency-mask": "^9.0.2",
+    "ngx-bootstrap": "^6.0.0",
     "ngx-toastr": "^13.2.1",
     "rxjs": "~6.6.0",
     "stacktrace-js": "^2.0.2",

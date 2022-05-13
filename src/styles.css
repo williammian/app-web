@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+/* ngx-bootstrap DatePicker */
+.bs-datepicker-head,
+ .bs-datepicker-head, .bs-datepicker button:active,
+ .bs-datepicker-body table td span.selected,
+ .bs-datepicker-body table td.selected span,
+ .bs-datepicker-body table td span[class*="select-"]:after,
+ .bs-datepicker-body table td[class*="select-"] span:after,
+ .bs-datepicker-body table td.active-week span:hover
+ {
+    background-color: rgb(2, 117, 216) !important;
+ }
+
+ .bs-datepicker-body table td.week span
+ {
+    color: #6e8f88 !important;
+ }

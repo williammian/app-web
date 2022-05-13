@@ -40,26 +40,27 @@ export class SignInComponent implements OnInit {
   }
 
   login() {
-    const email = this.loginForm.get('email').value;
-    const senha = this.loginForm.get('senha').value;
+    if(this.loginForm.valid && !this.loginForm.pending) {
+      const email = this.loginForm.get('email').value;
+      const senha = this.loginForm.get('senha').value;
 
-    this.authService
-        .authenticate(email, senha)
-        .subscribe(
-          () => this.fromUrl
-              ? this.router.navigateByUrl(this.fromUrl)
-              : this.router.navigate(['home'])
-          ,
-          err => {
-              console.log(err);
-              this.loginForm.reset();
-              this.platformDetectorService.isPlatformBrowser() &&
-                  this.emailInput.nativeElement.focus();
+      this.authService
+          .authenticate(email, senha)
+          .subscribe(
+            () => this.fromUrl
+                ? this.router.navigateByUrl(this.fromUrl)
+                : this.router.navigate(['home'])
+            ,
+            err => {
+                console.log(err);
+                this.loginForm.reset();
+                this.platformDetectorService.isPlatformBrowser() &&
+                    this.emailInput.nativeElement.focus();
 
-              this.toastrService.error('E-mail ou senha inválidos!');
-          }
-        );
-
+                this.toastrService.error('E-mail ou senha inválidos!');
+            }
+          );
+    }
   }
 
 }

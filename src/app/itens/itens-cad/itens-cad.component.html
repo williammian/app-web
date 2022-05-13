@@ -1,0 +1,118 @@
+<div class="container">
+
+  <form autocomplete="off" #form="ngForm" [formGroup]="itemForm" class="form" (submit)="salvar()">
+
+    <div class="row">
+      <div class="col">
+        <h4>{{ editando ? 'Edição de' : 'Novo' }} Item</h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2">
+        <div class="form-group">
+          <label for="tipoSelect">Tipo</label>
+          <select id="tipoSelect" #tipoSelect class="form-control" formControlName="tipo" autofocus>
+            <option value="0">Material</option>
+            <option value="1">Produto</option>
+            <option value="2">Mercadoria</option>
+            <option value="3">Serviço</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="codigoInput">Código</label>
+          <input id="codigoInput" #codigoInput formControlName="codigo" class="form-control">
+          <ap-vmessage
+            *ngIf="itemForm.get('codigo').errors?.required && (form.submitted || itemForm.get('codigo').touched)"
+            text="Código é requerido!">
+          </ap-vmessage>
+          <ap-vmessage
+            *ngIf="itemForm.get('codigo').errors?.minlength && (form.submitted || itemForm.get('codigo').touched)"
+            text="Tamanho mínimo é 1">
+          </ap-vmessage>
+          <ap-vmessage
+            *ngIf="itemForm.get('codigo').errors?.maxlength && (form.submitted || itemForm.get('codigo').touched)"
+            text="Tamanho máximo é 10">
+          </ap-vmessage>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <div class="form-group form-check">
+          <input id="ativoInput" #ativoInput formControlName="ativo" type="checkbox" class="form-check-input">
+          <label class="form-check-label" for="ativoInput">Ativo</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-7">
+        <div class="form-group">
+          <label for="descricaoInput">Descrição</label>
+          <input id="descricaoInput" #descricaoInput formControlName="descricao" class="form-control">
+          <ap-vmessage
+            *ngIf="itemForm.get('descricao').errors?.required && (form.submitted || itemForm.get('descricao').touched)"
+            text="Descrição é requerida!">
+          </ap-vmessage>
+          <ap-vmessage
+            *ngIf="itemForm.get('descricao').errors?.minlength && (form.submitted || itemForm.get('descricao').touched)"
+            text="Tamanho mínimo é 1">
+          </ap-vmessage>
+          <ap-vmessage
+            *ngIf="itemForm.get('descricao').errors?.maxlength && (form.submitted || itemForm.get('descricao').touched)"
+            text="Tamanho máximo é 50">
+          </ap-vmessage>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-2">
+        <div class="form-group">
+          <label for="dataCadastroInput">Data do Cadastro</label>
+          <input type="text" id="dataCadastroInput" #dataCadastroInput formControlName="dataCadastro" class="form-control"
+            bsDatepicker>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <div class="form-group">
+          <label for="abcSelect">Classificação</label>
+          <select id="abcSelect" #abcSelect class="form-control" formControlName="abc">
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="precoInput">Preço</label>
+          <input id="precoInput" #precoInput formControlName="preco" class="form-control"
+            currencyMask [options]="{ prefix: '', thousands: '.', decimal: ',' }" />
+          <ap-vmessage
+            *ngIf="itemForm.get('preco').errors?.required && (form.submitted || itemForm.get('preco').touched)"
+            text="Preço é requerido!">
+          </ap-vmessage>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-2">
+        <button class="btn btn-primary btn-block">Salvar</button>
+      </div>
+      <div class="col-md-2" *ngIf="editando">
+        <a class="btn btn-primary btn-block" [routerLink]="['/itens/novo']">Novo</a>
+      </div>
+    </div>
+
+  </form>
+
+</div>

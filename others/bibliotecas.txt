@@ -29,7 +29,7 @@ No angular.json
 
 Stacktrace
 
-npm install stacktrace-js
+npm install stacktrace-js@2.0.2
 
 npm install @types/stacktrace-js
 
@@ -80,3 +80,17 @@ export class YourComponent {
 }
 
 --------------------------------------------
+
+MaskMoney
+
+npm install ng2-currency-mask@9.0.2
+
+---------------------------------------------
+
+ngx-bootstrap
+
+DatePicker
+
+npm install ngx-bootstrap@6.0.0
+
+---------------------------------------------
