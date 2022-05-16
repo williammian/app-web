@@ -1,0 +1,61 @@
+Fazendo o build do projeto
+
+ng build --prod
+
+------------------------------------------------
+
+Criar arquivo Dockerfile na raiz do projeto
+
+FROM nginx:alpine
+COPY /dist/app-web /usr/share/nginx/html
+CMD ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/assets/env/env.template.js > /usr/share/nginx/html/assets/env/env.js && exec nginx -g 'daemon off;'"]
+
+------------------------------------------------
+
+Comando para o Docker criar a imagem (local)
+Estando na raiz do projeto
+
+docker build -t williammian/appweb .
+
+ -t é para nomear a imagem
+
+ . (espaço ponto) é para pegar o diretório raiz, atual
+
+-------------------------------------------------
+
+Rodando imagem do app com docker
+
+docker run -p 80:80 --env API_URL="http://localhost:8080" williammian/appweb
+
+--------------------------------------------------
+
+Testando no navegador
+
+http://localhost
+
+--------------------------------------------------
+
+Utilizando docker-compose
+
+Criar arquivo docker-compose.yml na raiz do projeto
+
+version: '3.0'
+services:
+
+  app:
+    container_name: app-web
+    image: williammian/appweb
+    environment:
+      API_URL: "http://localhost:8080"
+    ports:
+      - 80:80
+
+-------------------------------------------------
+
+Rodando container a partir do docker-compose
+
+Estando na pasta do arquivo docker-compose.yml
+
+docker-compose up
+
+--------------------------------------------------

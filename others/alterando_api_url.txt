@@ -1,0 +1,52 @@
+Em assets, criar pasta env
+
+------------------------------------------------------
+
+criar arquivo env.js
+
+(function(window) {
+  window["env"] = window["env"] || {};
+
+  // Environment variables
+  window["env"]["ApiUrl"] = "http://localhost:8080";
+})(this);
+
+------------------------------------------------------
+
+criar arquivo env.template.js
+
+(function(window) {
+  window.env = window.env || {};
+
+  // Environment variables
+  window["env"]["ApiUrl"] = "${API_URL}";
+})(this);
+
+-------------------------------------------------------
+
+Na pasta environments, no arquivo environment.ts
+
+export const environment = {
+  production: false,
+  ApiUrl: window["env"]["ApiUrl"] || "default"
+};
+
+-------------------------------------------------------
+
+Na pasta environments, no arquivo environment.prod.ts
+
+export const environment = {
+  production: true,
+  ApiUrl: window["env"]["ApiUrl"] || "default"
+};
+
+------------------------------------------------------
+
+No index.html
+
+<!-- Load environment variables -->
+<script src="assets/env/env.js"></script>
+
+-------------------------------------------------------
+
+
