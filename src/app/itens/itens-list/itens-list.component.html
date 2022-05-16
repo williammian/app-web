@@ -22,18 +22,21 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Código</th>
-            <th scope="col">Descrição</th>
-            <th scope="col">Ações</th>
+            <th>Código</th>
+            <th>Descrição</th>
+            <th class="col-acoes-header">Ações</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of itens">
             <td>{{ item.codigo }}</td>
             <td>{{ item.descricao }}</td>
-            <td>
-              <a [routerLink]="['/itens', item.id]">
+            <td class="col-acoes">
+              <a class="btn-alterar" [tooltip]="'Alterar'" [routerLink]="['/itens', item.id]">
                 <i class="fa fa-pencil"></i>
+              </a>
+              <a class="btn-excluir pointer-link" [tooltip]="'Excluir'" (click)="confirmaExclusao(item.id)">
+                <i class="fa fa-trash"></i>
               </a>
             </td>
           </tr>
@@ -53,3 +56,4 @@
   </div>
 
 </div>
+

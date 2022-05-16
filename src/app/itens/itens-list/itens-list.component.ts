@@ -1,6 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { ToastrService } from 'ngx-toastr';
 import { PlatformDetectorService } from "src/app/core/platform-detector/platform-detector.service";
 import { Paginator } from "src/app/shared/components/paginator/paginator";
+import { ConfirmaExclusaoComponent } from './../../shared/components/confirma-exclusao/confirma-exclusao.component';
 import { Item } from "../item";
 import { ItemFiltro } from "../item-filtro";
 import { ItemService } from './../item.service';
@@ -20,7 +23,10 @@ export class ItensListComponent implements OnInit {
 
   constructor(
     private itemService: ItemService,
-    private platformDetectorService: PlatformDetectorService) {}
+    private platformDetectorService: PlatformDetectorService,
+    private toastrService: ToastrService,
+    private modalService: NgbModal) {
+  }
 
   ngOnInit(): void {
     this.listar();
@@ -39,6 +45,27 @@ export class ItensListComponent implements OnInit {
         .subscribe(page => {
           this.itens = page.content;
           this.paginator.setPage(page);
+        });
+  }
+
+  confirmaExclusao(id: number) {
+    const dialogConfirmaExclusao = this.modalService.open(ConfirmaExclusaoComponent);
+    dialogConfirmaExclusao.componentInstance.id = id;
+    dialogConfirmaExclusao.result.then(
+      (id: any) => {
+        this.excluir(id);
+      },
+      (reason: any) => { }
+    );
+  }
+
+  excluir(id: number) {
+    console.log(id);
+    this.itemService
+        .excluir(id)
+        .subscribe(() => {
+          this.toastrService.success('Item excluído com sucesso!');
+          this.listar(this.paginator.number);
         });
   }
 

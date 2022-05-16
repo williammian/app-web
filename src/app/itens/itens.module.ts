@@ -10,6 +10,7 @@ import { PaginatorModule } from '../shared/components/paginator/paginator.module
 import { ItensListComponent } from "./itens-list/itens-list.component";
 import { ItensCadComponent } from './itens-cad/itens-cad.component';
 import { VMessageModule } from '../shared/components/vmessage/vmessage.module';
+import { TooltipModule } from '../shared/directives/tooltip/tooltip.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { VMessageModule } from '../shared/components/vmessage/vmessage.module';
     CoreModule,
     PaginatorModule,
     RouterModule,
-    VMessageModule
+    VMessageModule,
+    TooltipModule
   ]
 })
 export class ItensModule {}

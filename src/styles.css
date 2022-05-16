@@ -14,3 +14,59 @@
  {
     color: #6e8f88 !important;
  }
+
+
+ /* tooltip */
+ .tooltip-container {
+  text-align: center;
+  z-index: 100;
+  position: fixed;
+  padding: 6px 12px;
+  font-size: 0.66rem;
+  font-weight: 600;
+  line-height: initial;
+  color: white;
+  width: auto;
+  background: black;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translate(-50%, -30%);
+  animation: tooltip-slide 0.18s ease-out 0.5s;
+  animation-fill-mode: forwards;
+  pointer-events: none;
+}
+@keyframes tooltip-slide {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -30%);
+ }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+ }
+}
+
+
+/* col acoes */
+.col-acoes {
+  width: 90px;
+  text-align: center;
+}
+
+.col-acoes-header {
+  width: 90px;
+  text-align: center;
+}
+
+.btn-alterar {
+  padding: 8px;
+}
+
+.btn-excluir {
+  padding: 8px;
+}
+
+.pointer-link {
+  cursor: pointer;
+}
+

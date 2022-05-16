@@ -18,8 +18,8 @@
 
       <div *ngIf="(user$ | async) as user; else login">
         <i class="fa fa-user-circle mr-1"></i>
-        <a class="mr-1">{{ user.nome }}</a>
-        <a href="#" (click)="logout()">(Logout)</a>
+        <span class="mr-1">{{ user.nome }}</span>
+        <a class="pointer-link" (click)="logout()">(Logout)</a>
       </div>
 
       <ng-template #login>

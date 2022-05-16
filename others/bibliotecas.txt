@@ -94,3 +94,11 @@ DatePicker
 npm install ngx-bootstrap@6.0.0
 
 ---------------------------------------------
+
+ng-bootstrap
+
+Dialog/Modal
+
+npm i @ng-bootstrap/ng-bootstrap@8.0.4
+
+----------------------------------------------

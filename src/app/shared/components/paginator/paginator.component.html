@@ -1,20 +1,20 @@
 <nav *ngIf="paginator.totalPages > 0; else empty">
   <ul class="pagination justify-content-center">
-    <li class="page-item">
+    <li class="page-item pointer-link">
       <a class="page-link" (click)="listar(0)">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
-    <li *ngIf="paginator.number > 0" class="page-item">
+    <li *ngIf="paginator.number > 0" class="page-item pointer-link">
       <a class="page-link" (click)="listar(paginator.number - 1)">{{paginator.number}}</a>
     </li>
-    <li class="page-item active">
+    <li class="page-item active pointer-link">
       <a class="page-link" (click)="listar(paginator.number)">{{paginator.number + 1}}</a>
     </li>
-    <li *ngIf="paginator.number + 2 <= paginator.totalPages" class="page-item">
+    <li *ngIf="paginator.number + 2 <= paginator.totalPages" class="page-item pointer-link">
       <a class="page-link" (click)="listar(paginator.number + 1)">{{paginator.number + 2}}</a>
     </li>
-    <li class="page-item">
+    <li class="page-item pointer-link">
       <a class="page-link" (click)="listar(paginator.totalPages - 1)">
         <span aria-hidden="true">&raquo;</span>
       </a>
