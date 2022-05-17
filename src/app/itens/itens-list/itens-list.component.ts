@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ToastrService } from 'ngx-toastr';
 import { PlatformDetectorService } from "src/app/core/platform-detector/platform-detector.service";
@@ -25,11 +26,40 @@ export class ItensListComponent implements OnInit {
     private itemService: ItemService,
     private platformDetectorService: PlatformDetectorService,
     private toastrService: ToastrService,
-    private modalService: NgbModal) {
+    private modalService: NgbModal,
+    private route: ActivatedRoute,
+    private router: Router) {
+
+    route.params.subscribe(val => {
+      this.init();
+    });
+  }
+
+  init() {
+    let codigoDescricao = this.route.snapshot.queryParams['codigoDescricao'];
+    let page = this.route.snapshot.queryParams['page'];
+    let size = this.route.snapshot.queryParams['size'];
+
+    if(codigoDescricao === undefined || codigoDescricao === null) {
+      codigoDescricao = '';
+    }
+    this.filtro.codigoDescricao = codigoDescricao;
+
+    if(page === undefined || page === null) {
+      page = 0;
+    }
+    this.filtro.page = page;
+
+    if(size === undefined || size === null) {
+      size = 10;
+    }
+    this.filtro.size = size;
+
+    this.listar(page);
   }
 
   ngOnInit(): void {
-    this.listar();
+
   }
 
   ngAfterViewInit() {
@@ -45,6 +75,14 @@ export class ItensListComponent implements OnInit {
         .subscribe(page => {
           this.itens = page.content;
           this.paginator.setPage(page);
+
+          this.router.navigate([], {
+            queryParams: {
+              codigoDescricao: this.filtro.codigoDescricao,
+              size: this.filtro.size,
+              page: this.filtro.page
+            }
+          });
         });
   }
 
