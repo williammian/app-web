@@ -11,6 +11,7 @@ import { ItensListComponent } from "./itens-list/itens-list.component";
 import { ItensCadComponent } from './itens-cad/itens-cad.component';
 import { VMessageModule } from '../shared/components/vmessage/vmessage.module';
 import { TooltipModule } from '../shared/directives/tooltip/tooltip.module';
+import { ItensRoutingModule } from './itens.routing.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { TooltipModule } from '../shared/directives/tooltip/tooltip.module';
     PaginatorModule,
     RouterModule,
     VMessageModule,
-    TooltipModule
+    TooltipModule,
+    ItensRoutingModule
   ]
 })
 export class ItensModule {}

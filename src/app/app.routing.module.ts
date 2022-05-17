@@ -11,6 +11,7 @@ import { GlobalErrorComponent } from "./errors/global-error/global-error.compone
 import { HomeComponent } from "./home/home.component";
 
 const routes: Routes = [
+
   {
     path: '',
     component: SignInComponent,
@@ -31,27 +32,7 @@ const routes: Routes = [
 
   {
     path: 'itens',
-    component: ItensListComponent,
-    canActivate: [AuthGuard],
-    data: {
-      title: 'Itens'
-    }
-  },
-  {
-    path: 'itens/novo',
-    component: ItensCadComponent,
-    canActivate: [AuthGuard],
-    data: {
-      title: 'Itens'
-    }
-  },
-  {
-    path: 'itens/:id',
-    component: ItensCadComponent,
-    canActivate: [AuthGuard],
-    data: {
-      title: 'Itens'
-    }
+    loadChildren: () => import('./itens/itens.module').then(m => m.ItensModule)
   },
 
   {
@@ -61,6 +42,7 @@ const routes: Routes = [
       title: 'Error'
     }
   },
+
   {
     path: 'not-found',
     component: NotFoundComponent,
@@ -68,6 +50,7 @@ const routes: Routes = [
       title: 'Not found'
     }
   },
+
   {
     path: '**',
     redirectTo: 'not-found'
