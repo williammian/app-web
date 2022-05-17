@@ -48,19 +48,19 @@ export class ItensListComponent implements OnInit {
         });
   }
 
-  confirmaExclusao(id: number) {
+  confirmaExclusao(item: Item) {
     const dialogConfirmaExclusao = this.modalService.open(ConfirmaExclusaoComponent);
-    dialogConfirmaExclusao.componentInstance.id = id;
+    dialogConfirmaExclusao.componentInstance.obj = item;
+    dialogConfirmaExclusao.componentInstance.msg = 'Confirma a exclusão do item ' + item.codigo + ' - ' + item.descricao + ' ?';
     dialogConfirmaExclusao.result.then(
-      (id: any) => {
-        this.excluir(id);
+      (obj: any) => {
+        this.excluir(obj.id);
       },
       (reason: any) => { }
     );
   }
 
   excluir(id: number) {
-    console.log(id);
     this.itemService
         .excluir(id)
         .subscribe(() => {

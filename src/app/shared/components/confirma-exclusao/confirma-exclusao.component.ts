@@ -7,7 +7,9 @@ import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ['./confirma-exclusao.component.css']
 })
 export class ConfirmaExclusaoComponent {
-  @Input() id: number;
+  @Input() obj: any;
+  @Input() titulo: string;
+  @Input() msg: string;
 
   constructor(public activeModal: NgbActiveModal) {}
 
