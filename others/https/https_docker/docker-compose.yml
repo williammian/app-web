@@ -1,0 +1,11 @@
+version: '3.0'
+services:
+
+  app:
+    container_name: app-web
+    image: williammian/appweb
+    environment:
+      API_URL: "http://localhost:8080"
+    ports:
+      - 80:80
+      - 443:443
