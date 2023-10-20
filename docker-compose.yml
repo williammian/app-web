@@ -3,7 +3,7 @@ services:
 
   app:
     container_name: app-web
-    image: williammian/appweb
+    image: williammian/app-web:arm64v8
     environment:
       API_URL: "http://localhost:8080"
     ports:
