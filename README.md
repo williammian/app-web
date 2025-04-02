@@ -1,27 +1,65 @@
 # AppWeb
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.6.
+Este projeto é uma aplicação cliente SPA (Single Page Application) desenvolvida com Angular e Bootstrap 4, que consome uma API REST denominada `app-api` (https://github.com/williammian/app-api). A autenticação é realizada utilizando JWT (JSON Web Token).
 
-## Development server
+## Funcionalidades Principais
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- **Interface Responsiva**: Utilização do Bootstrap 4 para garantir uma experiência consistente em diferentes dispositivos.
+- **Autenticação JWT**: Implementação de autenticação segura utilizando tokens JWT.
+- **Consumo de API REST**: Integração com a API `app-api` para operações de CRUD e outras funcionalidades.
 
-## Code scaffolding
+## Tecnologias Utilizadas
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Angular**: Framework principal para o desenvolvimento da aplicação SPA.
+- **Bootstrap 4**: Biblioteca para estilização e componentes responsivos.
+- **JWT (JSON Web Token)**: Mecanismo de autenticação e autorização.
 
-## Build
+## Estrutura do Projeto
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+O projeto está organizado da seguinte forma:
 
-## Running unit tests
+- **src/**: Contém o código-fonte principal da aplicação.
+- **others/**: Outros arquivos e recursos utilizados no projeto.
+- **Dockerfile**: Arquivo para criação da imagem Docker da aplicação.
+- **docker-compose.yml**: Arquivo de configuração para orquestração de contêineres Docker.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Pré-requisitos
 
-## Running end-to-end tests
+Antes de executar o projeto, certifique-se de que os seguintes requisitos estão atendidos:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+- **Node.js**: Ambiente de execução JavaScript necessário para o Angular.
+- **Angular CLI**: Ferramenta de linha de comando para gerenciamento de projetos Angular.
+- **API `app-api`**: A API deve estar em execução e acessível para que o cliente funcione corretamente.
 
-## Further help
+## Como Executar o Projeto
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+1. **Instalar as Dependências**:
+   ```bash
+   npm install
+   ```
+
+2. **Executar o Servidor de Desenvolvimento**:
+   ```bash
+   ng serve
+   ```
+   A aplicação estará disponível em `http://localhost:4200/`.
+
+## Docker
+
+Para executar a aplicação utilizando Docker:
+
+1. **Construir a Imagem Docker**:
+   ```bash
+   docker build -t app-web .
+   ```
+
+2. **Executar o Contêiner**:
+   ```bash
+   docker run -p 4200:80 app-web
+   ```
+   A aplicação estará disponível em `http://localhost:4200/`.
+
+## Licença
+
+Este projeto está licenciado sob a licença MIT.
+
